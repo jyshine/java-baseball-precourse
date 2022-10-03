@@ -50,6 +50,10 @@ public class Referee {
         return this.numberResult;
     }
 
+    public void getGameScoreMessage(HashMap<BallStatus, Integer> numberResult) {
+        System.out.println(convertGameScoreMessage(numberResult));
+    }
+
     public String convertGameScoreMessage(HashMap<BallStatus, Integer> numberResult) {
         StringBuilder sb = new StringBuilder();
         for (BallStatus key : numberResult.keySet()) {

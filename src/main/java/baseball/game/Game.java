@@ -16,7 +16,7 @@ public class Game {
     Integer[] userNumbers = null;
     Integer[] computerNumbers = null;
 
-    public void initGame(){
+    public void initGame() {
         this.computer = new Computer();
         this.user = new User();
         this.computerNumbers = computer.createRandomNumber();
@@ -25,41 +25,51 @@ public class Game {
 
     public void play() {
         initGame();
-
-        while(true) {
+        do {
             System.out.print(Message.GAME_INPUT.getMessage());
+            userInput();
+        } while (!checkGameStatus(getRefereeResult()));
+    }
 
-            String readInput = Console.readLine();
+    private HashMap<BallStatus, Integer> getRefereeResult() {
+        referee = new Referee(this.computerNumbers, this.userNumbers);
+        HashMap<BallStatus, Integer> gameScore = referee.getGameScore();
+        referee.getGameScoreMessage(gameScore);
+        return gameScore;
+    }
 
-            if (user.isReadInputValidate(readInput)) {
-                userNumbers = user.convertReadInputToIntegerArray(readInput);
-            }
-            referee = new Referee(computerNumbers, userNumbers);
+    private void userInput() {
+        String readInput = Console.readLine();
+        validReadInput(readInput);
+    }
 
-            HashMap<BallStatus, Integer> gameScore = referee.getGameScore();
-            System.out.println(referee.convertGameScoreMessage(gameScore));
-
-            if (gameScore.getOrDefault(BallStatus.STRIKE,0) == 3){
-                System.out.println(Message.GAME_COMPLETE.getMessage());
-
-                System.out.println(Message.GAME_END.getMessage());
-                String retryGame = Console.readLine();
-
-
-                if (retryGame.equals("1")){
-                    initGame();
-                }
-
-                if (retryGame.equals("2")){
-                    System.out.println(Message.GAME_OVER.getMessage());
-                    break;
-                }
-            }
-
-
+    private void validReadInput(String readInput) {
+        if (user.isReadInputValidate(readInput)) {
+            this.userNumbers = user.convertReadInputToIntegerArray(readInput);
         }
+    }
 
+    private boolean checkGameStatus(HashMap<BallStatus, Integer> gameScore) {
+        if (gameScore.getOrDefault(BallStatus.STRIKE, 0) == 3) {
+            System.out.println(Message.GAME_COMPLETE.getMessage());
 
+            return isGameRetry();
+        }
+        return false;
+    }
+
+    private boolean isGameRetry() {
+        System.out.println(Message.GAME_END.getMessage());
+        String retryGame = Console.readLine();
+
+        if (retryGame.equals("1")) {
+            initGame();
+        }
+        if (retryGame.equals("2")) {
+            System.out.println(Message.GAME_OVER.getMessage());
+            return true;
+        }
+        return false;
     }
 
 }
