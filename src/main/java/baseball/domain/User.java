@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.common.Message;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,13 +8,13 @@ public class User {
 
     public boolean isReadInputValidate(String inputValue) throws IllegalArgumentException {
         if (!isLengthValidate(inputValue)) {
-            throw new IllegalArgumentException("3자리 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(Message.VALIDATION_NUMBER.getMessage());
         }
         if (!isNumbericValidate(inputValue)) {
-            throw new IllegalArgumentException("3자리 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(Message.VALIDATION_NUMBER.getMessage());
         }
         if (!isDupsValidate(inputValue)) {
-            throw new IllegalArgumentException("중복된 숫자는 입력할 수 없습니다.");
+            throw new IllegalArgumentException(Message.VALIDATION_DUPLICATION.getMessage());
         }
         return true;
     }

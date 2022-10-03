@@ -1,5 +1,6 @@
 package baseball.game;
 
+import baseball.common.Message;
 import baseball.domain.Computer;
 import baseball.domain.Referee;
 import baseball.domain.User;
@@ -25,7 +26,7 @@ public class Game {
         initGame();
 
         while(true) {
-            System.out.println("숫자를 입력해 주세요.");
+            System.out.print(Message.GAME_INPUT.getMessage());
 
             String readInput = Console.readLine();
 
@@ -38,9 +39,9 @@ public class Game {
             System.out.println(referee.convertGameScoreMessage(gameScore));
 
             if (gameScore.getOrDefault("strike",0) == 3){
-                System.out.println("3개의 숫자를 모두 맞히셨습니다.! 게임종료");
+                System.out.println(Message.GAME_COMPLETE.getMessage());
 
-                System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력해주세요.");
+                System.out.println(Message.GAME_END.getMessage());
                 String retryGame = Console.readLine();
 
 
@@ -49,6 +50,7 @@ public class Game {
                 }
 
                 if (retryGame.equals("2")){
+                    System.out.println(Message.GAME_OVER.getMessage());
                     break;
                 }
             }
