@@ -69,4 +69,14 @@ class UserTest {
                 .hasMessageContaining("3자리");
     }
 
+    @Test
+    void 입력_값_숫자_Array_변환(){
+        String inputValue = "123";
+        User user = new User();
+        Integer[] integers = user.convertReadInputToIntegerArray(inputValue);
+        assertEquals(integers.length, 3);
+        assertEquals(integers[0],1);
+        assertEquals(integers[1],2);
+        assertEquals(integers[2],3);
+    }
 }
