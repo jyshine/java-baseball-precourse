@@ -3,6 +3,7 @@ package baseball.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import baseball.common.Validation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -16,7 +17,7 @@ class UserTest {
         User user = new User();
 
         // when
-        boolean isLengthValidate = user.isLengthValidate(userInput);
+        boolean isLengthValidate = Validation.isLengthValidate(userInput);
 
         assertEquals(result, isLengthValidate);
 
@@ -28,7 +29,7 @@ class UserTest {
         User user = new User();
 
         // when
-        boolean isNumbericValidate = user.isNumbericValidate(userInput);
+        boolean isNumbericValidate = Validation.isNumbericValidate(userInput);
 
         // then
         assertEquals(result, isNumbericValidate);
@@ -41,7 +42,7 @@ class UserTest {
         User user = new User();
 
         // when
-        boolean isDupsValidate = user.isDupsValidate(userInput);
+        boolean isDupsValidate = Validation.isDupsValidate(userInput);
 
         // then
         assertEquals(result, isDupsValidate);
