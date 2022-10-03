@@ -9,8 +9,8 @@ public class Validation {
         return inputValue.matches("[+-]?\\d*(\\.\\d+)?");
     }
 
-    public static boolean isLengthValidate(String userInput) {
-        return userInput.length() == 3;
+    public static boolean isLengthValidate(String userInput, int length) {
+        return userInput.length() == length;
     }
 
     public static boolean isDupsValidate(String userInput) {

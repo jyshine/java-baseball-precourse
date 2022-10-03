@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class StringTest {
     @Test
-    void split(){
+    void split() {
         // given
         String testValue = "1";
         // when
@@ -21,7 +21,7 @@ public class StringTest {
     }
 
     @Test
-    void substring(){
+    void substring() {
         // given
         String testValue = "(1,2)";
         // when
@@ -31,7 +31,7 @@ public class StringTest {
     }
 
     @Test
-    void charAt(){
+    void charAt() {
         // given
         String testValue = "abc";
         // when

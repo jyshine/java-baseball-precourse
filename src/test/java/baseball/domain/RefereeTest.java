@@ -40,7 +40,7 @@ class RefereeTest {
 
     @ParameterizedTest
     @CsvSource(value = {"0,0", "1,1", "2,0"})
-    void 볼(int index, int count){
+    void 볼(int index, int count) {
         Integer[] computerNumbers = {4, 2, 5};
         Integer[] userNumbers = {4, 5, 6};
         referee = new Referee(computerNumbers, userNumbers);
@@ -64,7 +64,7 @@ class RefereeTest {
     }
 
     @Test
-    void 낫싱(){
+    void 낫싱() {
         Integer[] computerNumbers = {4, 2, 5};
         Integer[] userNumbers = {1, 3, 6};
         referee = new Referee(computerNumbers, userNumbers);
@@ -76,16 +76,16 @@ class RefereeTest {
     }
 
     @Test
-    void 심판_판정(){
+    void 심판_판정() {
         Integer[] computerNumbers = {4, 2, 5};
         Integer[] userNumbers = {6, 2, 4};
         referee = new Referee(computerNumbers, userNumbers);
         referee.getGameScore();
         HashMap<BallStatus, Integer> numberResult = referee.getNumberResult();
 
-        assertEquals(numberResult.get(BallStatus.STRIKE),1);
-        assertEquals(numberResult.get(BallStatus.BALL),1);
-        assertEquals(numberResult.get(BallStatus.NOTHING),1);
+        assertEquals(numberResult.get(BallStatus.STRIKE), 1);
+        assertEquals(numberResult.get(BallStatus.BALL), 1);
+        assertEquals(numberResult.get(BallStatus.NOTHING), 1);
     }
 
 

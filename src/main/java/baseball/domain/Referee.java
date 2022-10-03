@@ -1,7 +1,6 @@
 package baseball.domain;
 
 import baseball.common.BallStatus;
-import baseball.common.Message;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -42,8 +41,8 @@ public class Referee {
 
     public HashMap<BallStatus, Integer> getGameScore() {
         for (int i = 0; i < userNumbers.length; i++) {
-            addStrike(i);
             addBall(i);
+            addStrike(i);
             addNothing(i);
         }
 
@@ -71,6 +70,7 @@ public class Referee {
         if (!key.equals(BallStatus.NOTHING)) {
             sb.append(numberResult.get(key));
             sb.append(key.getStatus());
+            sb.append(" ");
         }
     }
 }

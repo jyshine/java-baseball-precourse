@@ -11,7 +11,7 @@ public class Computer {
         Integer[] randomNumberArray = new Integer[3];
         Set<Integer> randomNumbers = new HashSet<>();
 
-        while(randomNumbers.size() <3){
+        while (randomNumbers.size() < 3) {
             int randomNumber = pickNumberInRange(1, 9);
             randomNumbers.add(randomNumber);
         }

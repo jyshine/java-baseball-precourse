@@ -2,6 +2,7 @@ package baseball.game;
 
 import baseball.common.BallStatus;
 import baseball.common.Message;
+import baseball.common.Validation;
 import baseball.domain.Computer;
 import baseball.domain.Referee;
 import baseball.domain.User;
@@ -52,7 +53,6 @@ public class Game {
     private boolean checkGameStatus(HashMap<BallStatus, Integer> gameScore) {
         if (gameScore.getOrDefault(BallStatus.STRIKE, 0) == 3) {
             System.out.println(Message.GAME_COMPLETE.getMessage());
-
             return isGameRetry();
         }
         return false;
@@ -61,7 +61,7 @@ public class Game {
     private boolean isGameRetry() {
         System.out.println(Message.GAME_END.getMessage());
         String retryGame = Console.readLine();
-
+        isGameRetryValid(retryGame);
         if (retryGame.equals("1")) {
             initGame();
         }
@@ -70,6 +70,15 @@ public class Game {
             return true;
         }
         return false;
+    }
+
+    private void isGameRetryValid(String inputValue) throws IllegalArgumentException {
+        if (!Validation.isLengthValidate(inputValue, 1)) {
+            throw new IllegalArgumentException(Message.VALIDATION_NUMBER_ONE.getMessage());
+        }
+        if (!Validation.isNumbericValidate(inputValue)) {
+            throw new IllegalArgumentException(Message.VALIDATION_NUMBER_ONE.getMessage());
+        }
     }
 
 }
