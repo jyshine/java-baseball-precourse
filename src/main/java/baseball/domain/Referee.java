@@ -20,7 +20,7 @@ public class Referee {
 
     public void addStrike(int index) {
         if (computerNumbers[index].equals(userNumbers[index])) {
-            numberResult.put("strike", numberResult.getOrDefault("strike", 0) + 1);
+            this.numberResult.put("strike", numberResult.getOrDefault("strike", 0) + 1);
         }
     }
 
@@ -28,21 +28,33 @@ public class Referee {
     public void addBall(int index) {
         if (!computerNumbers[index].equals(userNumbers[index])
                 && Arrays.asList(computerNumbers).contains(userNumbers[index])) {
-            numberResult.put("ball", numberResult.getOrDefault("ball", 0) + 1);
+            this.numberResult.put("ball", numberResult.getOrDefault("ball", 0) + 1);
         }
     }
 
     public void addNothing(int index) {
         if (!Arrays.asList(computerNumbers).contains(userNumbers[index])) {
-            numberResult.put("nothing", numberResult.getOrDefault("nothing", 0) + 1);
+            this.numberResult.put("nothing", numberResult.getOrDefault("nothing", 0) + 1);
         }
     }
 
-    public void getGameScore() {
+    public HashMap<String, Integer> getGameScore() {
         for (int i = 0; i < userNumbers.length; i++) {
             addStrike(i);
             addBall(i);
             addNothing(i);
         }
+
+        return this.numberResult;
+    }
+
+    public String convertGameScoreMessage(HashMap<String, Integer> numberResult) {
+        StringBuilder sb = new StringBuilder();
+        for (String key : numberResult.keySet()) {
+            sb.append(key);
+            sb.append(numberResult.get(key));
+        }
+        return sb.toString();
+
     }
 }
