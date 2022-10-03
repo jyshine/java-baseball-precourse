@@ -1,11 +1,9 @@
 package baseball.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import baseball.common.BallStatus;
-import java.util.Arrays;
 import java.util.HashMap;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -23,7 +21,7 @@ class RefereeTest {
 
         referee.addStrike(index);
         HashMap<BallStatus, Integer> numberResult = referee.getNumberResult();
-        assertEquals(numberResult.getOrDefault("strike", 0), count);
+        assertEquals(numberResult.getOrDefault(BallStatus.STRIKE, 0), count);
 
     }
 
@@ -37,7 +35,7 @@ class RefereeTest {
         referee.addStrike(1);
         referee.addStrike(2);
 
-        assertEquals(referee.getNumberResult().getOrDefault("strike", 0), 3);
+        assertEquals(referee.getNumberResult().getOrDefault(BallStatus.STRIKE, 0), 3);
     }
 
     @ParameterizedTest
@@ -48,7 +46,7 @@ class RefereeTest {
         referee = new Referee(computerNumbers, userNumbers);
 
         referee.addBall(index);
-        assertEquals(referee.getNumberResult().getOrDefault("ball", 0), count);
+        assertEquals(referee.getNumberResult().getOrDefault(BallStatus.BALL, 0), count);
 
     }
 
@@ -62,7 +60,7 @@ class RefereeTest {
         referee.addBall(1);
         referee.addBall(2);
 
-        assertEquals(referee.getNumberResult().getOrDefault("ball", 0), 3);
+        assertEquals(referee.getNumberResult().getOrDefault(BallStatus.BALL, 0), 3);
     }
 
     @Test
@@ -74,7 +72,7 @@ class RefereeTest {
         referee.addNothing(1);
         referee.addNothing(2);
 
-        assertEquals(referee.getNumberResult().getOrDefault("nothing", 0), 3);
+        assertEquals(referee.getNumberResult().getOrDefault(BallStatus.NOTHING, 0), 3);
     }
 
     @Test
@@ -85,9 +83,9 @@ class RefereeTest {
         referee.getGameScore();
         HashMap<BallStatus, Integer> numberResult = referee.getNumberResult();
 
-        assertEquals(numberResult.get("strike"),1);
-        assertEquals(numberResult.get("ball"),1);
-        assertEquals(numberResult.get("nothing"),1);
+        assertEquals(numberResult.get(BallStatus.STRIKE),1);
+        assertEquals(numberResult.get(BallStatus.BALL),1);
+        assertEquals(numberResult.get(BallStatus.NOTHING),1);
     }
 
 
