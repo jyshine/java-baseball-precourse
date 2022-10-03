@@ -2,6 +2,7 @@ package baseball.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import baseball.common.BallStatus;
 import java.util.Arrays;
 import java.util.HashMap;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +22,7 @@ class RefereeTest {
         referee = new Referee(computerNumbers, userNumbers);
 
         referee.addStrike(index);
-        HashMap<String, Integer> numberResult = referee.getNumberResult();
+        HashMap<BallStatus, Integer> numberResult = referee.getNumberResult();
         assertEquals(numberResult.getOrDefault("strike", 0), count);
 
     }
@@ -82,7 +83,7 @@ class RefereeTest {
         Integer[] userNumbers = {6, 2, 4};
         referee = new Referee(computerNumbers, userNumbers);
         referee.getGameScore();
-        HashMap<String, Integer> numberResult = referee.getNumberResult();
+        HashMap<BallStatus, Integer> numberResult = referee.getNumberResult();
 
         assertEquals(numberResult.get("strike"),1);
         assertEquals(numberResult.get("ball"),1);

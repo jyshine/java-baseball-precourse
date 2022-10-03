@@ -1,5 +1,6 @@
 package baseball.game;
 
+import baseball.common.BallStatus;
 import baseball.common.Message;
 import baseball.domain.Computer;
 import baseball.domain.Referee;
@@ -35,10 +36,10 @@ public class Game {
             }
             referee = new Referee(computerNumbers, userNumbers);
 
-            HashMap<String, Integer> gameScore = referee.getGameScore();
+            HashMap<BallStatus, Integer> gameScore = referee.getGameScore();
             System.out.println(referee.convertGameScoreMessage(gameScore));
 
-            if (gameScore.getOrDefault("strike",0) == 3){
+            if (gameScore.getOrDefault(BallStatus.STRIKE,0) == 3){
                 System.out.println(Message.GAME_COMPLETE.getMessage());
 
                 System.out.println(Message.GAME_END.getMessage());
